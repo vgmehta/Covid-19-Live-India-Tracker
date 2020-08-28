@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'COVID19india';
+  title = 'COVID19 India Tracker';
+  constructor(private router: Router) {
+    this.router.navigate(['/all-india']);
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/all-india']);
+  }
 }

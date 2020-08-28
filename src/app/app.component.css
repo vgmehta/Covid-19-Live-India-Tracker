@@ -1,0 +1,21 @@
+mat-toolbar {
+  background-color: #0080FF;
+  color: white;
+  width: 100%;
+}
+
+.title {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+#virus {
+  color: #c41313;
+  font-size: 25px;
+  margin-right: 0;
+}
+
+h1[ng-reflect-router-link] {
+  outline: none;
+  cursor: pointer;
+}

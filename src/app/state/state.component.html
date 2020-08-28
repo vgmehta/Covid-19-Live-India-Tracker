@@ -1,0 +1,23 @@
+<div>
+  <span class="loading">
+    <mat-spinner diameter="140" id="loading">Loading...</mat-spinner>
+  </span>
+</div>
+<table class="table" *ngIf="flag==true">
+  <thead>
+    <tr>
+      <th scope="col">District</th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Active</th>
+      <th scope="col">Deceased</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arr;" class="states">
+      <td>{{item.district}}</td>
+      <td>{{ item.confirmed }}</td>
+      <td>{{ item.active }}</td>
+      <td>{{ item.deceased }}</td>
+    </tr>
+  </tbody>
+</table>

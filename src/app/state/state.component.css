@@ -1,0 +1,35 @@
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 96%;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+td {
+  padding: 5px;
+}
+
+th {
+  padding: 10px;
+}
+
+.states:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+thead {
+  text-align: left;
+  background-color: #48494e;
+  color: white;
+}
+
+#loading {
+  margin: 100px auto;
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #0080FF;
+}

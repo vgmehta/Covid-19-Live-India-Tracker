@@ -1,0 +1,34 @@
+<div>
+  <span class="loading">
+    <mat-spinner diameter="140" id="loading">Loading...</mat-spinner>
+  </span>
+</div>
+<table class="table" *ngIf="flag==true">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Confirmed</th>
+      <th>Active</th>
+      <th>Deceased</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of state_data;" class='states'>
+      <span [ngClass]="{'disabled':item.state === 'Total'}">
+        <td routerLink='/state' routerLinkActive="router-link-active" [queryParams]='{name: item.state}'>
+          {{item.state}}
+        </td>
+        <mat-icon *ngIf="item.statenotes!==''" class="info" tooltip={{item.statenotes}} autoPlacement=true>info
+        </mat-icon>
+      </span>
+      <td>{{ item.confirmed }}
+        <span *ngIf="item.deltaconfirmed!=='0'" class="dailyIncrease">(+{{item.deltaconfirmed}})</span>
+      </td>
+      <td>{{ item.active }}</td>
+      <td>{{ item.deaths }}
+        <span *ngIf="item.deltadeaths!=='0'" class="dailyIncrease">(+{{item.deltadeaths}})</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<router-outlet></router-outlet>
