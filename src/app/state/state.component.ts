@@ -93,7 +93,7 @@ export class StateComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name': return compare(a.state, b.state, isAsc);
+        case 'name': return compare(a.district, b.district, isAsc);
         // tslint:disable-next-line: radix
         case 'confirmed': return compare(parseInt(a.confirmed), parseInt(b.confirmed), isAsc);
         // tslint:disable-next-line: radix
