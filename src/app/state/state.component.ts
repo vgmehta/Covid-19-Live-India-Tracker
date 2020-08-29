@@ -30,6 +30,7 @@ export class StateComponent implements OnInit {
   public pieChartType = 'pie';
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     legend: {
       position: 'top',
     },

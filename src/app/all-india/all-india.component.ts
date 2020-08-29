@@ -29,8 +29,9 @@ export class AllIndiaComponent implements OnInit {
   public pieChartType = 'pie';
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     legend: {
-      position: 'top',
+      position: 'bottom',
     },
     plugins: {
       datalabels: {
