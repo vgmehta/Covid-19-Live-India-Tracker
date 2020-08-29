@@ -3,6 +3,10 @@
     <mat-spinner diameter="140" id="loading">Loading...</mat-spinner>
   </span>
 </div>
+<div style="display: block" *ngIf="flag==true">
+  <canvas baseChart [data]="pieData" [labels]="pieChartLabels" [chartType]='pieChartType' [options]="pieChartOptions"
+    [colors]="pieChartColors" [legend]="pieChartLegend">></canvas>
+</div>
 <table class="table" *ngIf="flag==true">
   <thead>
     <tr>
@@ -15,7 +19,8 @@
   <tbody>
     <tr *ngFor="let item of state_data;" class='states'>
       <span [ngClass]="{'disabled':item.state === 'Total'}">
-        <td routerLink='/state' routerLinkActive="router-link-active" [queryParams]='{name: item.state}'>
+        <td routerLink='/state' routerLinkActive="router-link-active"
+          [queryParams]='{name: item.state, active: item.active,deaths: item.deaths,recovered:item.recovered}'>
           {{item.state}}
         </td>
         <mat-icon *ngIf="item.statenotes!==''" class="info" tooltip={{item.statenotes}} autoPlacement=true>info

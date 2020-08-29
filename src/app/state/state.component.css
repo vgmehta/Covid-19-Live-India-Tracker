@@ -33,3 +33,10 @@ thead {
 .mat-spinner circle {
   stroke: #0080FF;
 }
+
+h1 {
+  text-align: center;
+  color: #0080FF;
+  text-transform: uppercase;
+  padding-top: 10px;
+}

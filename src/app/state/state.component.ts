@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-state',
@@ -14,6 +15,28 @@ export class StateComponent implements OnInit {
   arr = [];
   state_name: string;
   flag = false;
+  public pieChartLabels = ['Total Active', 'Total Desceased', 'Total Recovered'];
+  public pieData = [];
+  public pieChartType = 'pie';
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
+  public pieChartColors = [
+    {
+      backgroundColor: ['#33a8de', '#c9241e', '#17a63d'],
+    },
+  ];
   constructor(private http: HttpClient, private route: ActivatedRoute) {
 
   }
@@ -41,6 +64,9 @@ export class StateComponent implements OnInit {
         });
         console.log(this.arr);
         this.arr.sort(compare);
+        this.pieData.push(this.route.snapshot.queryParamMap.get('active') || 'unknown');
+        this.pieData.push(this.route.snapshot.queryParamMap.get('deaths') || 'unknown');
+        this.pieData.push(this.route.snapshot.queryParamMap.get('recovered') || 'unknown');
       });
     function hideloader() {
       document.getElementById('loading').style.display = 'none';

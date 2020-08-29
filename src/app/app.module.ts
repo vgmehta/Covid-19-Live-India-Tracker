@@ -9,6 +9,7 @@ import { AllIndiaComponent } from './all-india/all-india.component';
 import { StateComponent } from './state/state.component';
 import { MatModule } from './material.module';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     HttpClientModule,
     BrowserAnimationsModule,
     MatModule,
-    TooltipModule
+    TooltipModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

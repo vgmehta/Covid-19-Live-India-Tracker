@@ -3,6 +3,11 @@
     <mat-spinner diameter="140" id="loading">Loading...</mat-spinner>
   </span>
 </div>
+<h1>{{state_name}}</h1>
+<div style="display: block" *ngIf="flag==true">
+  <canvas baseChart [data]="pieData" [labels]="pieChartLabels" [chartType]='pieChartType' [options]="pieChartOptions"
+    [colors]="pieChartColors" [legend]="pieChartLegend">></canvas>
+</div>
 <table class="table" *ngIf="flag==true">
   <thead>
     <tr>
