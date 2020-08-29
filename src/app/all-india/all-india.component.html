@@ -7,13 +7,14 @@
   <canvas baseChart [data]="pieData" [labels]="pieChartLabels" [chartType]='pieChartType' [options]="pieChartOptions"
     [colors]="pieChartColors" [legend]="pieChartLegend">></canvas>
 </div>
-<table class="table" *ngIf="flag==true">
+
+<table class="table" *ngIf="flag==true" matSort (matSortChange)="sortData($event)">
   <thead>
     <tr>
-      <th>State</th>
-      <th>Confirmed</th>
-      <th>Active</th>
-      <th>Deceased</th>
+      <th mat-sort-header="name">State</th>
+      <th mat-sort-header="confirmed">Confirmed</th>
+      <th mat-sort-header="active">Active</th>
+      <th mat-sort-header="deceased">Deceased</th>
     </tr>
   </thead>
   <tbody>

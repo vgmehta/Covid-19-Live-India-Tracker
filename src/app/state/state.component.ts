@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartOptions } from 'chart.js';
+import { Sort } from '@angular/material/sort';
+
+export interface DistrictData {
+  name: string;
+  confirmed: number;
+  active: number;
+  deceased: number;
+}
 
 @Component({
   selector: 'app-state',
@@ -15,6 +23,8 @@ export class StateComponent implements OnInit {
   arr = [];
   state_name: string;
   flag = false;
+  sortedData: DistrictData[];
+
   public pieChartLabels = ['Total Active', 'Total Desceased', 'Total Recovered'];
   public pieData = [];
   public pieChartType = 'pie';
@@ -63,7 +73,6 @@ export class StateComponent implements OnInit {
           return district;
         });
         console.log(this.arr);
-        this.arr.sort(compare);
         this.pieData.push(this.route.snapshot.queryParamMap.get('active') || 'unknown');
         this.pieData.push(this.route.snapshot.queryParamMap.get('deaths') || 'unknown');
         this.pieData.push(this.route.snapshot.queryParamMap.get('recovered') || 'unknown');
@@ -71,15 +80,31 @@ export class StateComponent implements OnInit {
     function hideloader() {
       document.getElementById('loading').style.display = 'none';
     }
-    function compare(a, b) {
-      if (a.confirmed < b.confirmed) {
-        return 1;
-      }
-      if (a.confirmed > b.confirmed) {
-        return -1;
-      }
-      return 0;
-    }
   }
+  sortData(sort: Sort) {
+    const data = this.arr.slice();
+    console.log(data);
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
 
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name': return compare(a.state, b.state, isAsc);
+        // tslint:disable-next-line: radix
+        case 'confirmed': return compare(parseInt(a.confirmed), parseInt(b.confirmed), isAsc);
+        // tslint:disable-next-line: radix
+        case 'active': return compare(parseInt(a.active), parseInt(b.active), isAsc);
+        // tslint:disable-next-line: radix
+        case 'deceased': return compare(parseInt(a.deceased), parseInt(b.deceased), isAsc);
+        default: return 0;
+      }
+    });
+    this.arr = this.sortedData;
+  }
+}
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
